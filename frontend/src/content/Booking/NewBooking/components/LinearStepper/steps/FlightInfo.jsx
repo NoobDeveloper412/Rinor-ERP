@@ -13,7 +13,7 @@ const FlightInfo = () => {
         <Typography variant="h6" gutterBottom>
           Flight Info
         </Typography>
-        <Grid container spacing={3}>
+        <Grid container spacing={3} marginBottom={1.5}>
           <Grid item xs={4}>
             <TextField
               label="Airline"

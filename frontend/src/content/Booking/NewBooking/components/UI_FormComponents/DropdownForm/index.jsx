@@ -76,8 +76,8 @@ export default function PassengerDropdown({ register, ticketIndex }) {
           aria-haspopup="menu"
           onClick={handleToggle}
         >
-          <p style={{ fontWeight: 600 }}>{travelers}</p>
-          {options[selectedIndex]}
+          <p style={{ fontWeight: 600, marginRight:'5px' }}>{travelers}</p>
+          {options[selectedIndex]}(s)
         </div>
       </div>
       <Popper
@@ -143,11 +143,11 @@ export default function PassengerDropdown({ register, ticketIndex }) {
                         </div>
                         <div style={{ display: "flex" }}>
                           <RemoveCircleOutlineRoundedIcon
-                          // onClick={() => setAdultCounter(adultCounter - 1)}
+                          onClick={() => setAdultCounter(adultCounter - 1)}
                           />
                           <input
-                            // value={adultCounter}
-                            // onChange={(e) => setAdultCounter(e.target.value)}
+                            value={adultCounter}
+                            onChange={(e) => setAdultCounter(e.target.value)}
                             {...register(
                               `passengers.numberOfAdults`
                             )}
@@ -161,7 +161,7 @@ export default function PassengerDropdown({ register, ticketIndex }) {
                             }}
                           />
                           <AddCircleOutlineRoundedIcon
-                          // onClick={() => setAdultCounter(adultCounter + 1)}
+                          onClick={() => setAdultCounter(adultCounter + 1)}
                           />
                         </div>
                       </Box>
@@ -212,8 +212,8 @@ export default function PassengerDropdown({ register, ticketIndex }) {
                           // }
                           />
                           <input
-                            // value={childrenCounter}
-                            // onChange={(e) => setChildrenCounter(e.target.value)}
+                            value={childrenCounter}
+                            onChange={(e) => setChildrenCounter(e.target.value)}
                             {...register(
                               `passengers.numberOfChildren`
                             )}
@@ -227,9 +227,9 @@ export default function PassengerDropdown({ register, ticketIndex }) {
                             }}
                           />
                           <AddCircleOutlineRoundedIcon
-                          // onClick={() =>
-                          //   setChildrenCounter(childrenCounter + 1)
-                          // }
+                          onClick={() =>
+                            setChildrenCounter(childrenCounter + 1)
+                          }
                           />
                         </div>
                       </Box>
@@ -278,8 +278,8 @@ export default function PassengerDropdown({ register, ticketIndex }) {
                             onClick={() => setInfantCounter(infantCounter - 1)}
                           />
                           <input
-                            // value={infantCounter}
-                            // onChange={(e) => setInfantCounter(e.target.value)}
+                            value={infantCounter}
+                            onChange={(e) => setInfantCounter(e.target.value)}
                             {...register(
                               `passengers.numberOfInfants`
                             )}

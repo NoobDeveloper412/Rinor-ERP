@@ -58,47 +58,48 @@ const BookingInfo = () => {
         </Typography>
 
         <div
-          style={{
-            // display: 'flex',
-            // alignItems: 'center',
-            // justifyContent: 'space-between'
-          }}
+          style={
+            {
+              // display: 'flex',
+              // alignItems: 'center',
+              // justifyContent: 'space-between'
+            }
+          }
         >
           <div>
             <FormControl
               style={{ marginLeft: '5px' }}
               onChange={(e) => handleFlightType(e.target.value)}
             >
-              <RadioGroup >
-                <div style={{display:'flex'}}>
-
-                <label htmlFor="oneWayTrip">
-                  <input
-                    {...register(`trip`)}
-                    type="radio"
-                    value="oneWayTrip"
-                    id="oneWayTrip"
-                  />
-                  One Way Trip
-                </label>
-                <label htmlFor="roundWayTrip">
-                  <input
-                    {...register(`trip`)}
-                    type="radio"
-                    value="roundWayTrip"
-                    id="roundWayTrip"
-                  />
-                  Round Way Trip
-                </label>
-                <label htmlFor="multiCityTrip">
-                  <input
-                    {...register(`trip`)}
-                    type="radio"
-                    value="multiCityTrip"
-                    id="multiCityTrip"
-                  />
-                  Multi-City Trip
-                </label>
+              <RadioGroup>
+                <div style={{ display: 'flex' }}>
+                  <label htmlFor="oneWayTrip">
+                    <input
+                      {...register(`trip`)}
+                      type="radio"
+                      value="oneWayTrip"
+                      id="oneWayTrip"
+                    />
+                    One Way Trip
+                  </label>
+                  <label htmlFor="roundWayTrip">
+                    <input
+                      {...register(`trip`)}
+                      type="radio"
+                      value="roundWayTrip"
+                      id="roundWayTrip"
+                    />
+                    Round Way Trip
+                  </label>
+                  <label htmlFor="multiCityTrip">
+                    <input
+                      {...register(`trip`)}
+                      type="radio"
+                      value="multiCityTrip"
+                      id="multiCityTrip"
+                    />
+                    Multi-City Trip
+                  </label>
                 </div>
               </RadioGroup>
             </FormControl>
@@ -256,10 +257,18 @@ const BookingInfo = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              marginTop: '2.5rem'
+              marginTop: '2.5rem',
+              marginBottom: '10px'
             }}
           >
-            <Grid item xs={3} hidden={trip !== 'multiCityTrip'} style={{marginLeft:'-15px', marginBottom:'10px'}}>
+            <Grid
+              item
+              xs={3}
+              hidden={trip !== 'multiCityTrip'}
+              style={{
+                marginLeft: '-15px'
+              }}
+            >
               <Container>
                 <Paper elevation={2}>
                   <Box
