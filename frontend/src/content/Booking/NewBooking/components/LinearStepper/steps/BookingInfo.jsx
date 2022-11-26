@@ -59,9 +59,9 @@ const BookingInfo = () => {
 
         <div
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between'
+            // display: 'flex',
+            // alignItems: 'center',
+            // justifyContent: 'space-between'
           }}
         >
           <div>
@@ -69,7 +69,9 @@ const BookingInfo = () => {
               style={{ marginLeft: '5px' }}
               onChange={(e) => handleFlightType(e.target.value)}
             >
-              <RadioGroup>
+              <RadioGroup >
+                <div style={{display:'flex'}}>
+
                 <label htmlFor="oneWayTrip">
                   <input
                     {...register(`trip`)}
@@ -97,6 +99,7 @@ const BookingInfo = () => {
                   />
                   Multi-City Trip
                 </label>
+                </div>
               </RadioGroup>
             </FormControl>
             <Grid container spacing={1} style={{ marginTop: '15px' }} key={0}>
@@ -252,11 +255,11 @@ const BookingInfo = () => {
             style={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'space-between',
               marginTop: '2.5rem'
             }}
           >
-            <Grid item xs={2} hidden={trip !== 'multiCityTrip'}>
+            <Grid item xs={3} hidden={trip !== 'multiCityTrip'} style={{marginLeft:'-15px', marginBottom:'10px'}}>
               <Container>
                 <Paper elevation={2}>
                   <Box
@@ -278,7 +281,7 @@ const BookingInfo = () => {
               </Container>
             </Grid>
 
-            <Grid item xs={1}>
+            <Grid item xs={1.5}>
               <Controller
                 name="pnrNumber"
                 control={control}

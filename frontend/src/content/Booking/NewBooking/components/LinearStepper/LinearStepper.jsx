@@ -1,27 +1,26 @@
 import React, { useState } from 'react';
-import { Typography, Button, Stepper, Step, StepLabel } from '@mui/material';
 import { FormProvider, useForm } from 'react-hook-form';
 import BookingInfo from './steps/BookingInfo';
 import FlightInfo from './steps/FlightInfo';
 import PassengerInfo from './steps/PassengerInfo';
 import ReviewBooking from './steps/ReviewBooking';
-import useStyles from '../../View/styles/FormWizardStyles';
-import { yupResolver } from '@hookform/resolvers/yup';
 import ConfirmBooking from './steps/ConfirmBooking';
 import Checkout from './steps/Checkout';
-import axios from 'axios';
-import { validationSchema } from '../utils/formValidationScheme';
+// import { yupResolver } from '@hookform/resolvers/yup';
+// import axios from 'axios';
+// import { validationSchema } from '../utils/formValidationScheme';
 
 // ** MUI Imports
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
+import { Typography, Button, Stepper, Step, StepLabel } from '@mui/material';
 import StepContent from '@mui/material/StepContent';
 
 // ** Third Party Imports
 import clsx from 'clsx';
-// import toast from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 // ** Styled Component
 import StepperWrapper from './stepper';
@@ -60,6 +59,7 @@ const StepperVerticalWithNumbers = () => {
   // ** States
   const [activeStep, setActiveStep] = useState(0);
   const steps = getSteps();
+  const { register, handleSubmit, reset } = useForm();
 
   const methods = useForm({
     // resolver: yupResolver(validationSchema),
@@ -74,11 +74,12 @@ const StepperVerticalWithNumbers = () => {
     console.log(activeStep);
     setActiveStep(activeStep + 1);
     if (activeStep === steps.length - 1) {
-      // toast.success('Completed All Steps!!');
+      toast.success('Completed All Steps!!');
     }
   };
 
   const handleReset = () => {
+    reset()
     setActiveStep(0);
   };
 
