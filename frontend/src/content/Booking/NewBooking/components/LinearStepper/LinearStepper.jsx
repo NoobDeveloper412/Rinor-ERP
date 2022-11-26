@@ -25,6 +25,7 @@ import toast from 'react-hot-toast';
 // ** Styled Component
 import StepperWrapper from './stepper';
 import StepperCustomDot from '../UI_FormComponents/StepperCustomDot';
+import { formDefaultValues } from '../utils/constants';
 
 function getSteps() {
   return [
@@ -62,6 +63,7 @@ const StepperVerticalWithNumbers = () => {
   const { register, handleSubmit, reset } = useForm();
 
   const methods = useForm({
+    defaultValues: formDefaultValues
     // resolver: yupResolver(validationSchema),
   });
 
@@ -70,8 +72,8 @@ const StepperVerticalWithNumbers = () => {
     setActiveStep(activeStep - 1);
   };
 
-  const handleNext = () => {
-    console.log(activeStep);
+  const handleNext = (data) => {
+    console.log(data);
     setActiveStep(activeStep + 1);
     if (activeStep === steps.length - 1) {
       toast.success('Completed All Steps!!');
@@ -79,7 +81,7 @@ const StepperVerticalWithNumbers = () => {
   };
 
   const handleReset = () => {
-    reset()
+    reset();
     setActiveStep(0);
   };
 

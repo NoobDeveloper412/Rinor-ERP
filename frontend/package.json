@@ -56,6 +56,7 @@
     "react-beautiful-dnd": "13.1.0",
     "react-chartjs-2": "2.11.1",
     "react-circular-progressbar": "2.0.4",
+    "react-counter-input": "^0.2.1",
     "react-countup": "6.1.0",
     "react-custom-scrollbars-2": "4.4.0",
     "react-dom": "17.0.2",

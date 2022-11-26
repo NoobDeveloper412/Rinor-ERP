@@ -170,7 +170,7 @@ const BookingInfo = () => {
               </Grid>
               <PassengerDropdown
                 register={register}
-                ticketIndex="defaultTicket"
+                setValue={setValue}
               />
             </Grid>
             {trip === 'multiCityTrip'
