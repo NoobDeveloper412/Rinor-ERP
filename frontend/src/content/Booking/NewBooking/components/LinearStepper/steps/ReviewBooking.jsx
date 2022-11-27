@@ -8,48 +8,36 @@ import { Paper, Typography, Stack } from '@mui/material';
 const ReviewBooking = () => {
   const { control } = useFormContext();
   const [grandTotal, setgrandTotal] = useState(0);
-  const adultFields = useFieldArray({
-    control,
-    name: 'adults'
-  }).fields;
-  const childrenFields = useFieldArray({
-    control,
-    name: 'children'
-  }).fields;
-  const infantFields = useFieldArray({
-    control,
-    name: 'infants'
-  }).fields;
 
   const {
     origin,
     destination,
     journeyDate,
     returnDate,
-    numberOfAdults,
-    numberOfChildren,
-    numberOfInfants,
     airline,
     cabin,
-    // basicFare,
     taxes,
     salesCommission,
     discount,
-    // gender,
-    // firstName,
-    // surName,
-    // email,
-    // phone,
-    // pnr,
-    // ticket,
-    // issueBy,
-    // ledger,
     adultFare,
     numberOfTravelers,
     childFare,
     infantFare,
-    code
+    code,
+    passengers
   } = control._formValues;
+
+  const passengerFields = passengers;
+
+  const [numberOfAdults, setNumberOfAdults] = useState(
+    passengerFields.numberOfAdults
+  );
+  const [numberOfChildren, setNumberOfChildren] = useState(
+    passengerFields.numberOfChildren
+  );
+  const [numberOfInfants, setNumberOfInfants] = useState(
+    passengerFields.numberOfInfants
+  );
 
   const [totalAdultFare, setTotalAdultFare] = useState(
     numberOfAdults * adultFare
@@ -75,9 +63,6 @@ const ReviewBooking = () => {
     childFare,
     control,
     infantFare,
-    numberOfAdults,
-    numberOfChildren,
-    numberOfInfants,
     totalAdultFare,
     totalAmount,
     totalChildrenFare,
@@ -156,8 +141,9 @@ const ReviewBooking = () => {
               <b>Passenger Details</b>
             </Typography>
 
-            {adultFields.map((field, index) => (
+            {passengers.adults.map((field, index) => (
               <div key={index}>
+                <h4>Adult {index + 1}</h4>
                 <p>Date of Birth:{field.dateOfBirth}</p>
                 <p>First name: {field.firstName}</p>
                 <p>Email: {field.email}</p>
@@ -165,16 +151,20 @@ const ReviewBooking = () => {
                 <p>Surname{field.surname}</p>
               </div>
             ))}
-            {childrenFields.map((field, index) => (
+            {passengers.children.map((field, index) => (
               <div key={index.id}>
+                <h4>Child {index + 1}</h4>
+
                 <p>Date of Birth: {field.dateOfBirth}</p>
                 <p>First name: {field.firstName}</p>
                 <p>Email {field.email}</p>
                 <p>Surname: {field.surname}</p>
               </div>
             ))}
-            {infantFields.map((field, index) => (
+            {passengers.infants.map((field, index) => (
               <div key={index}>
+                <h4>Infant {index + 1}</h4>
+
                 <p>{field.dateOfBirth}</p>
                 <p>{field.firstName}</p>
                 <p>{field.email}</p>
@@ -189,7 +179,7 @@ const ReviewBooking = () => {
             </Typography>
 
             <p>
-              <b> Total Adult Fare:</b>{' '}
+              <b>Total Adult Fare:</b>{' '}
               {isNaN(totalAdultFare) ? '' : totalAdultFare}
             </p>
             <p>
@@ -197,7 +187,7 @@ const ReviewBooking = () => {
               {isNaN(totalChildrenFare) ? '' : totalChildrenFare}
             </p>
             <p>
-              <b> Total Infant Fare:</b>{' '}
+              <b>Total Infant Fare:</b>{' '}
               {isNaN(totalInfantFare) ? '' : totalInfantFare}
             </p>
             <p>

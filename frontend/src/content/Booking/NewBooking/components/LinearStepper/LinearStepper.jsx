@@ -58,7 +58,7 @@ function getSteps() {
 
 const StepperVerticalWithNumbers = () => {
   // ** States
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(3);
   const steps = getSteps();
   const { reset } = useForm();
 

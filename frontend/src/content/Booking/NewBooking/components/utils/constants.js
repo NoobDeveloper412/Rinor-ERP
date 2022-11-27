@@ -1,27 +1,57 @@
 export const formDefaultValues = {
-  origin: 'Skardu',
+  adultFare: 10000,
+  airline: 'PIA',
+  cabin: 'Economy',
+  childFare: 1000,
+  code: '1000',
   destination: 'Islamabad',
+  discount: 2,
+  gender: 'male',
+  infantFare: 100,
+  issueBy: 'test',
   journeyDate: '12/12/12',
-  returnDate: '10/10/10',
+  ledger: 'idk',
+  origin: 'Skardu',
   passengers: {
     cabin: 'economy',
     numberOfAdults: 1,
-    numberOfChildren: 0,
-    numberOfInfants: 0
+    numberOfChildren: 1,
+    numberOfInfants: 1,
+    adults: [
+      {
+        dateOfBirth: '2022-11-28',
+        email: 'alimuhammad4lala@gmail.com',
+        firstName: 'Alfred',
+        phoneNumber: '+923060688855',
+        surname: 'Jamil',
+        ticketNumber: '1234567890'
+      }
+    ],
+    children: [
+      {
+        dateOfBirth: '2022-11-28',
+        email: 'alimuhammad4lala@gmail.com',
+        firstName: 'Alfred',
+        phoneNumber: '+923060688855',
+        surname: 'Jamil',
+        ticketNumber: '1234567890'
+      }
+    ],
+    infants: [
+      {
+        dateOfBirth: '2022-11-28',
+        firstName: 'Alfred',
+        surname: 'Jamil',
+        ticketNumber: '1234567890'
+      }
+    ]
   },
-  airline: 'PIA',
-  cabin: 'Economy',
-  adultFare: 10000,
-  childFare: 1000,
-  infantFare: 100,
-  taxes: 10,
+  pnrNumber: '1234',
+  returnDate: '10/10/10',
   salesCommission: 10,
-  discount: 2,
-  gender: 'male',
-  pnrNumber: '99999',
+  taxes: 10,
   ticket: 398475938,
-  issueBy: 'test',
-  ledger: 'idk',
-  code: '1000',
-  trip:'oneWayTrip'
+  tickets: { 0: {}, defaultTicket: {} },
+  totalTickets: 1,
+  trip: 'multiCityTrip'
 };
