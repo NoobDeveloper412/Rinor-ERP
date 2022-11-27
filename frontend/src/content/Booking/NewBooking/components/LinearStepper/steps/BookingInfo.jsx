@@ -8,42 +8,56 @@ import {
   Typography
 } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FormControl from '@mui/material/FormControl';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 import PassengerDropdown from '../../UI_FormComponents/DropdownForm';
+import { number } from 'prop-types';
 
 const BookingInfo = () => {
   const {
     register,
     setValue,
-    unregister,
     control,
+    unregister,
+    resetField,
     formState: { errors }
   } = useFormContext();
-  // const wholeFormVal = useFormContext();
+
   const [numberOfTickets, setNumberOfTickets] = useState(0);
-  const [oneWayTrip, setOneWayTrip] = useState(true);
-  const [multiCityTrip, setMultiCityTrip] = useState(false);
+  const [tripType, setTripType] = useState('oneWayTrip');
 
   const { trip, totalTickets } = control._formValues;
 
   const handleFlightType = (value) => {
     if (value === 'oneWayTrip') {
-      setOneWayTrip(true);
-      setMultiCityTrip(false);
-      // resetField("tickets");
-      unregister('pnrNumber');
+      setValue('trip', 'oneWayTrip');
+      setTripType('oneWayTrip');
+      setNumberOfTickets(0);
+      setValue('totalTickets', 0);
+
+      for (let index = 0; index < trip.length - 1; index++) {
+        unregister(`tickets.${index}`);
+      }
     } else if (value === 'roundWayTrip') {
-      setOneWayTrip(false);
-      // resetField("tickets");
-      unregister('pnrNumber');
-      setMultiCityTrip(false);
+      setValue('trip', 'roundWayTrip');
+      setTripType('roundWayTrip');
+      setValue('totalTickets', 0);
+      setNumberOfTickets(0);
+      for (let index = 0; index < trip.length - 1; index++) {
+        unregister(`tickets.${index}`);
+      }
     } else {
-      setOneWayTrip(false);
-      setMultiCityTrip(true);
+      setTripType('multiCityTrip');
+      setValue('trip', 'multiCityTrip');
     }
   };
+  useEffect(() => {
+    setTripType(trip);
+    if (totalTickets !== undefined) {
+      setNumberOfTickets(totalTickets);
+    }
+  }, []);
 
   const handleTicketFormPopulate = () => {
     setNumberOfTickets(numberOfTickets + 1);
@@ -57,15 +71,7 @@ const BookingInfo = () => {
           Booking Details
         </Typography>
 
-        <div
-          style={
-            {
-              // display: 'flex',
-              // alignItems: 'center',
-              // justifyContent: 'space-between'
-            }
-          }
-        >
+        <div>
           <div>
             <FormControl
               style={{ marginLeft: '5px' }}
@@ -146,15 +152,11 @@ const BookingInfo = () => {
                 />
               </Grid>
 
-              <Grid
-                item
-                xs={3}
-                hidden={!(trip !== 'oneWayTrip' || oneWayTrip === false)}
-              >
+              <Grid item xs={3}>
                 <TextField
                   label="Return Date"
                   type="date"
-                  disabled={trip === 'oneWayTrip'}
+                  disabled={tripType === 'oneWayTrip'}
                   variant="outlined"
                   fullWidth
                   {...register(`tickets.defaultTicket.returnDate`)}
@@ -168,12 +170,9 @@ const BookingInfo = () => {
                   }}
                 />
               </Grid>
-              <PassengerDropdown
-                register={register}
-                setValue={setValue}
-              />
+              <PassengerDropdown register={register} setValue={setValue} />
             </Grid>
-            {trip === 'multiCityTrip'
+            {tripType === 'multiCityTrip'
               ? Array.from({ length: totalTickets }).map((_, index) => (
                   <Grid
                     container
@@ -223,12 +222,9 @@ const BookingInfo = () => {
                       />
                     </Grid>
 
-                    <Grid
-                      item
-                      xs={3}
-                      hidden={!(trip !== 'oneWayTrip' || oneWayTrip === false)}
-                    >
+                    <Grid item xs={3}>
                       <TextField
+                        disabled={tripType === 'oneWayTrip'}
                         label="Return Date"
                         type="date"
                         variant="outlined"
@@ -244,10 +240,6 @@ const BookingInfo = () => {
                         }}
                       />
                     </Grid>
-                    {/* <PassengerDropdown
-                      register={register}
-                      ticketIndex={index}
-                    /> */}
                   </Grid>
                 ))
               : ''}
@@ -264,7 +256,7 @@ const BookingInfo = () => {
             <Grid
               item
               xs={3}
-              hidden={trip !== 'multiCityTrip'}
+              hidden={tripType !== 'multiCityTrip'}
               style={{
                 marginLeft: '-15px'
               }}

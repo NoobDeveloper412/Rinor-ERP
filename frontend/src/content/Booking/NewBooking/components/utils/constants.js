@@ -1,5 +1,4 @@
 export const formDefaultValues = {
-  oneWayTrip: true,
   origin: 'Skardu',
   destination: 'Islamabad',
   journeyDate: '12/12/12',
@@ -7,8 +6,8 @@ export const formDefaultValues = {
   passengers: {
     cabin: 'economy',
     numberOfAdults: 1,
-    numberOfChildren: 1,
-    numberOfInfants: 1
+    numberOfChildren: 0,
+    numberOfInfants: 0
   },
   airline: 'PIA',
   cabin: 'Economy',
@@ -19,14 +18,10 @@ export const formDefaultValues = {
   salesCommission: 10,
   discount: 2,
   gender: 'male',
-  firstName: 'test',
-  surname: 'test',
-  dateOfBirth: '10/10/10',
-  email: 'test@gmail.com',
-  phone: 35555071004,
   pnrNumber: '99999',
   ticket: 398475938,
   issueBy: 'test',
   ledger: 'idk',
-  code: '1000'
+  code: '1000',
+  trip:'oneWayTrip'
 };

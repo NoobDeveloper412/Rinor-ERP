@@ -155,7 +155,11 @@ export default function PassengerDropdown({ register, setValue }) {
                         </div>
                         <div style={{ display: 'flex' }}>
                           <RemoveCircleOutlineRoundedIcon
-                            onClick={() => setAdultCounter(adultCounter - 1)}
+                            onClick={() => {
+                              if (adultCounter > 0) {
+                                setAdultCounter(adultCounter - 1);
+                              }
+                            }}
                           />
                           <input
                             value={parseInt(adultCounter)}
@@ -172,7 +176,11 @@ export default function PassengerDropdown({ register, setValue }) {
                             }}
                           />
                           <AddCircleOutlineRoundedIcon
-                            onClick={() => setAdultCounter(adultCounter + 1)}
+                            onClick={() => {
+                              if (adultCounter < 10) {
+                                setAdultCounter(adultCounter + 1);
+                              }
+                            }}
                           />
                         </div>
                       </Box>
@@ -217,7 +225,13 @@ export default function PassengerDropdown({ register, setValue }) {
                           </span>
                         </div>
                         <div style={{ display: 'flex' }}>
-                          <RemoveCircleOutlineRoundedIcon />
+                          <RemoveCircleOutlineRoundedIcon
+                            onClick={() => {
+                              if (childrenCounter > 0) {
+                                setChildrenCounter(childrenCounter - 1);
+                              }
+                            }}
+                          />
                           <input
                             value={childrenCounter}
                             onChange={(e) => setChildrenCounter(e.target.value)}
@@ -231,9 +245,11 @@ export default function PassengerDropdown({ register, setValue }) {
                             }}
                           />
                           <AddCircleOutlineRoundedIcon
-                            onClick={() =>
-                              setChildrenCounter(childrenCounter + 1)
-                            }
+                            onClick={() => {
+                              if (childrenCounter < 10) {
+                                setChildrenCounter(childrenCounter + 1);
+                              }
+                            }}
                           />
                         </div>
                       </Box>
@@ -279,7 +295,11 @@ export default function PassengerDropdown({ register, setValue }) {
                         </div>
                         <div style={{ display: 'flex' }}>
                           <RemoveCircleOutlineRoundedIcon
-                            onClick={() => setInfantCounter(infantCounter - 1)}
+                            onClick={() => {
+                              if (infantCounter > 0) {
+                                setInfantCounter(infantCounter - 1);
+                              }
+                            }}
                           />
                           <input
                             value={infantCounter}
@@ -294,7 +314,11 @@ export default function PassengerDropdown({ register, setValue }) {
                             }}
                           />
                           <AddCircleOutlineRoundedIcon
-                            onClick={() => setInfantCounter(infantCounter + 1)}
+                            onClick={() => {
+                              if (infantCounter < 10) {
+                                setInfantCounter(infantCounter + 1);
+                              }
+                            }}
                           />
                         </div>
                       </Box>
