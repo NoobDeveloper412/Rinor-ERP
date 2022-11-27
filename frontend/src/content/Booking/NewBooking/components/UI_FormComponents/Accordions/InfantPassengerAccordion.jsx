@@ -15,13 +15,13 @@ function InfantPassengerDetailAccordion({
 }) {
   return (
     <div>
-      <Accordion style={{ backgroundColor: '#424242', margin: '10px 0px' }}>
+      <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography color="White">{title}</Typography>
+          <Typography>{title}</Typography>
         </AccordionSummary>
         <AccordionDetails style={{ color: 'white' }}>
           <Typography color="darkgrey">{subtitle}</Typography>

@@ -17,13 +17,10 @@ const options = ['Traveler'];
 export default function PassengerDropdown({ register, setValue }) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const [adultCounter, setAdultCounter] = useState(0);
   const [childrenCounter, setChildrenCounter] = useState(0);
   const [infantCounter, setInfantCounter] = useState(0);
-
-  const [cabinClass, setCabinClass] = useState('economy');
 
   const { control } = useFormContext();
 
@@ -89,12 +86,15 @@ export default function PassengerDropdown({ register, setValue }) {
           onClick={handleToggle}
         >
           <p style={{ fontWeight: 600, marginRight: '5px' }}>{travelers}</p>
-          {options[selectedIndex]}(s)
+          Traveler(s)
         </div>
       </div>
       <Popper
-        sx={{
-          zIndex: 1
+        style={{
+          border: '1px solid lightGray',
+          borderRadius: '10px',
+          background: 'white',
+          boxShadow: '0px 2px 17px 0px rgba(0,0,0,0.15)'
         }}
         open={open}
         anchorEl={anchorRef.current}
@@ -110,290 +110,265 @@ export default function PassengerDropdown({ register, setValue }) {
                 placement === 'bottom' ? 'center top' : 'center bottom'
             }}
           >
-            <Paper>
+            <div>
               <ClickAwayListener onClickAway={handleClose}>
                 <div>
-                  <Paper variant="outlined">
-                    <div>
-                      <Box
+                  <div>
+                    <Box
+                      style={{
+                        padding: '8px 15px',
+                        borderBottom: '1px solid #dbdde0',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between'
+                      }}
+                    >
+                      <div
                         style={{
-                          padding: '8px 15px',
-                          borderBottom: '1px solid #dbdde0',
-                          cursor: 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between'
-                        }}
-                      >
-                        <div
-                          style={{
-                            lineHeight: '14px',
-                            marginLeft: '4px',
-                            padding: '5px'
-                          }}
-                        >
-                          <p
-                            style={{
-                              margin: 0,
-                              paddingTop: 5,
-                              paddingBottom: '3px',
-                              fontWeight: 200,
-                              fontSize: '13px'
-                            }}
-                          >
-                            Adults
-                          </p>
-                          <span
-                            style={{
-                              fontWeight: 400,
-                              color: '#6e6b7b',
-                              fontSize: '12.5px'
-                            }}
-                          >
-                            12 Years and above
-                          </span>
-                        </div>
-                        <div style={{ display: 'flex' }}>
-                          <RemoveCircleOutlineRoundedIcon
-                            onClick={() => {
-                              if (adultCounter > 0) {
-                                setAdultCounter(adultCounter - 1);
-                              }
-                            }}
-                          />
-                          <input
-                            value={parseInt(adultCounter)}
-                            onChange={(e) =>
-                              setAdultCounter(parseInt(e.target.value))
-                            }
-                            style={{
-                              backgroundColor: 'white',
-                              fontSize: '0.1rem!important',
-                              border: 'none',
-                              outline: 'none',
-                              lineHeight: '14px',
-                              width: '20px'
-                            }}
-                          />
-                          <AddCircleOutlineRoundedIcon
-                            onClick={() => {
-                              if (adultCounter < 10) {
-                                setAdultCounter(adultCounter + 1);
-                              }
-                            }}
-                          />
-                        </div>
-                      </Box>
-                    </div>
-                    <div>
-                      <Box
-                        style={{
-                          padding: '8px 15px',
-                          borderBottom: '1px solid #dbdde0',
-                          cursor: 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between'
-                        }}
-                      >
-                        <div
-                          style={{
-                            lineHeight: '14px',
-                            marginLeft: '4px',
-                            padding: '5px'
-                          }}
-                        >
-                          <p
-                            style={{
-                              margin: 0,
-                              paddingTop: 5,
-                              paddingBottom: '3px',
-                              fontWeight: 200,
-                              fontSize: '13px'
-                            }}
-                          >
-                            Children
-                          </p>
-                          <span
-                            style={{
-                              fontWeight: 400,
-                              color: '#6e6b7b',
-                              fontSize: '12.5px'
-                            }}
-                          >
-                            2 to 11 years
-                          </span>
-                        </div>
-                        <div style={{ display: 'flex' }}>
-                          <RemoveCircleOutlineRoundedIcon
-                            onClick={() => {
-                              if (childrenCounter > 0) {
-                                setChildrenCounter(childrenCounter - 1);
-                              }
-                            }}
-                          />
-                          <input
-                            value={childrenCounter}
-                            onChange={(e) => setChildrenCounter(e.target.value)}
-                            style={{
-                              backgroundColor: 'white',
-                              fontSize: '0.1rem!important',
-                              border: 'none',
-                              outline: 'none',
-                              lineHeight: '14px',
-                              width: '20px'
-                            }}
-                          />
-                          <AddCircleOutlineRoundedIcon
-                            onClick={() => {
-                              if (childrenCounter < 10) {
-                                setChildrenCounter(childrenCounter + 1);
-                              }
-                            }}
-                          />
-                        </div>
-                      </Box>
-                    </div>
-                    <div>
-                      <Box
-                        style={{
-                          padding: ' 8px 15px',
-                          borderBottom: '1px solid #dbdde0',
-                          cursor: 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between'
-                        }}
-                      >
-                        <div
-                          style={{
-                            lineHeight: '14px',
-                            marginLeft: '4px',
-                            padding: '5px'
-                          }}
-                        >
-                          <p
-                            style={{
-                              margin: 0,
-                              paddingTop: 5,
-                              paddingBottom: '3px',
-                              fontWeight: 200,
-                              fontSize: '13px'
-                            }}
-                          >
-                            Infants
-                          </p>
-                          <span
-                            style={{
-                              fontWeight: 400,
-                              color: '#6e6b7b',
-                              fontSize: '12.5px'
-                            }}
-                          >
-                            Below 2 years
-                          </span>
-                        </div>
-                        <div style={{ display: 'flex' }}>
-                          <RemoveCircleOutlineRoundedIcon
-                            onClick={() => {
-                              if (infantCounter > 0) {
-                                setInfantCounter(infantCounter - 1);
-                              }
-                            }}
-                          />
-                          <input
-                            value={infantCounter}
-                            onChange={(e) => setInfantCounter(e.target.value)}
-                            style={{
-                              backgroundColor: 'white',
-                              fontSize: '0.1rem!important',
-                              border: 'none',
-                              outline: 'none',
-                              lineHeight: '14px',
-                              width: '20px'
-                            }}
-                          />
-                          <AddCircleOutlineRoundedIcon
-                            onClick={() => {
-                              if (infantCounter < 10) {
-                                setInfantCounter(infantCounter + 1);
-                              }
-                            }}
-                          />
-                        </div>
-                      </Box>
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
-                      <Box
-                        style={{
-                          marginLeft: '18px',
-                          marginBottom: '2rem',
-                          marginTop: '10px'
+                          lineHeight: '14px',
+                          marginLeft: '4px',
+                          padding: '5px'
                         }}
                       >
                         <p
                           style={{
-                            fontWeight: 100,
-                            fontSize: '16px',
                             margin: 0,
-                            marginLeft: '5px'
+                            paddingTop: 5,
+                            paddingBottom: '3px',
+                            fontWeight: 200,
+                            fontSize: '13px'
                           }}
                         >
-                          Class
+                          Adults
                         </p>
-                        <FormControl style={{ marginLeft: '5px' }}>
-                          <label htmlFor="economy">
-                            <input
-                              // {...register(`tickets.${ticketIndex}.cabin`)}
-                              {...register(`passengers.cabin`)}
-                              type="radio"
-                              value="economy"
-                              id="economy"
-                            />
-                            Economy
-                          </label>
-                          <label htmlFor="business">
-                            <input
-                              {...register(`passengers.cabin`)}
-                              type="radio"
-                              value="business"
-                              id="business"
-                            />
-                            Business
-                          </label>
-                          {/* <RadioGroup
-row
-aria-labelledby="demo-row-radio-buttons-group-label"
-name="row-radio-buttons-group"
-defaultValue="economy"
-onChange={(e) => console.log(e.target.value)}
->
-<FormControlLabel
-value="economy"
-className="radioButtonLabels"
-control={<Radio />}
-label="Economy"
-/>
-<FormControlLabel
-value="business"
-className="radioButtonLabels"
-control={<Radio />}
-label="Business"
-/>
-</RadioGroup> */}
-                        </FormControl>
-                      </Box>
-                      <Button
-                        style={{ marginTop: '10px' }}
-                        onClick={handleClose}
+                        <span
+                          style={{
+                            fontWeight: 400,
+                            color: '#6e6b7b',
+                            fontSize: '12.5px'
+                          }}
+                        >
+                          12 Years and above
+                        </span>
+                      </div>
+                      <div style={{ display: 'flex' }}>
+                        <RemoveCircleOutlineRoundedIcon
+                          onClick={() => {
+                            if (adultCounter > 0) {
+                              setAdultCounter(adultCounter - 1);
+                            }
+                          }}
+                        />
+                        <input
+                          value={parseInt(adultCounter)}
+                          onChange={(e) =>
+                            setAdultCounter(parseInt(e.target.value))
+                          }
+                          style={{
+                            backgroundColor: 'white',
+                            fontSize: '0.1rem!important',
+                            border: 'none',
+                            outline: 'none',
+                            lineHeight: '14px',
+                            width: '20px'
+                          }}
+                        />
+                        <AddCircleOutlineRoundedIcon
+                          onClick={() => {
+                            if (adultCounter < 10) {
+                              setAdultCounter(adultCounter + 1);
+                            }
+                          }}
+                        />
+                      </div>
+                    </Box>
+                  </div>
+                  <div>
+                    <Box
+                      style={{
+                        padding: '8px 15px',
+                        borderBottom: '1px solid #dbdde0',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between'
+                      }}
+                    >
+                      <div
+                        style={{
+                          lineHeight: '14px',
+                          marginLeft: '4px',
+                          padding: '5px'
+                        }}
                       >
-                        Done
-                      </Button>
-                    </div>
-                  </Paper>
+                        <p
+                          style={{
+                            margin: 0,
+                            paddingTop: 5,
+                            paddingBottom: '3px',
+                            fontWeight: 200,
+                            fontSize: '13px'
+                          }}
+                        >
+                          Children
+                        </p>
+                        <span
+                          style={{
+                            fontWeight: 400,
+                            color: '#6e6b7b',
+                            fontSize: '12.5px'
+                          }}
+                        >
+                          2 to 11 years
+                        </span>
+                      </div>
+                      <div style={{ display: 'flex' }}>
+                        <RemoveCircleOutlineRoundedIcon
+                          onClick={() => {
+                            if (childrenCounter > 0) {
+                              setChildrenCounter(childrenCounter - 1);
+                            }
+                          }}
+                        />
+                        <input
+                          value={childrenCounter}
+                          onChange={(e) => setChildrenCounter(e.target.value)}
+                          style={{
+                            backgroundColor: 'white',
+                            fontSize: '0.1rem!important',
+                            border: 'none',
+                            outline: 'none',
+                            lineHeight: '14px',
+                            width: '20px'
+                          }}
+                        />
+                        <AddCircleOutlineRoundedIcon
+                          onClick={() => {
+                            if (childrenCounter < 10) {
+                              setChildrenCounter(childrenCounter + 1);
+                            }
+                          }}
+                        />
+                      </div>
+                    </Box>
+                  </div>
+                  <div>
+                    <Box
+                      style={{
+                        padding: ' 8px 15px',
+                        borderBottom: '1px solid #dbdde0',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between'
+                      }}
+                    >
+                      <div
+                        style={{
+                          lineHeight: '14px',
+                          marginLeft: '4px',
+                          padding: '5px'
+                        }}
+                      >
+                        <p
+                          style={{
+                            margin: 0,
+                            paddingTop: 5,
+                            paddingBottom: '3px',
+                            fontWeight: 200,
+                            fontSize: '13px'
+                          }}
+                        >
+                          Infants
+                        </p>
+                        <span
+                          style={{
+                            fontWeight: 400,
+                            color: '#6e6b7b',
+                            fontSize: '12.5px'
+                          }}
+                        >
+                          Below 2 years
+                        </span>
+                      </div>
+                      <div style={{ display: 'flex' }}>
+                        <RemoveCircleOutlineRoundedIcon
+                          onClick={() => {
+                            if (infantCounter > 0) {
+                              setInfantCounter(infantCounter - 1);
+                            }
+                          }}
+                        />
+                        <input
+                          value={infantCounter}
+                          onChange={(e) => setInfantCounter(e.target.value)}
+                          style={{
+                            backgroundColor: 'white',
+                            fontSize: '0.1rem!important',
+                            border: 'none',
+                            outline: 'none',
+                            lineHeight: '14px',
+                            width: '20px'
+                          }}
+                        />
+                        <AddCircleOutlineRoundedIcon
+                          onClick={() => {
+                            if (infantCounter < 10) {
+                              setInfantCounter(infantCounter + 1);
+                            }
+                          }}
+                        />
+                      </div>
+                    </Box>
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <Box
+                      style={{
+                        marginLeft: '18px',
+                        marginBottom: '2rem',
+                        marginTop: '10px'
+                      }}
+                    >
+                      <p
+                        style={{
+                          fontWeight: 100,
+                          fontSize: '16px',
+                          margin: 0,
+                          marginLeft: '5px'
+                        }}
+                      >
+                        Class
+                      </p>
+                      <FormControl style={{ marginLeft: '5px' }}>
+                        <label htmlFor="economy">
+                          <input
+                            // {...register(`tickets.${ticketIndex}.cabin`)}
+                            {...register(`passengers.cabin`)}
+                            type="radio"
+                            value="economy"
+                            id="economy"
+                          />
+                          Economy
+                        </label>
+                        <label htmlFor="business">
+                          <input
+                            {...register(`passengers.cabin`)}
+                            type="radio"
+                            value="business"
+                            id="business"
+                          />
+                          Business
+                        </label>
+                      </FormControl>
+                    </Box>
+                    <Button style={{ marginTop: '10px' }} onClick={handleClose}>
+                      Done
+                    </Button>
+                  </div>
                 </div>
               </ClickAwayListener>
-            </Paper>
+            </div>
           </Grow>
         )}
       </Popper>

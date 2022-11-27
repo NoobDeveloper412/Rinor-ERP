@@ -35,20 +35,36 @@ const PassengerInfo = () => {
           ticketIndex={tickets["defaultTicket"]}
         />
       </Paper> */}
-      <Paper variant="outlined" key="defaultTicket">
+      <Paper
+        variant="outlined"
+        key="defaultTicket"
+        style={{ marginBottom: '10px' }}
+      >
         <AdultPassengerForm
           register={register}
-          numberOfAdults={passengers.numberOfAdults === undefined ? 0 : passengers.numberOfAdults}
+          numberOfAdults={
+            passengers.numberOfAdults === undefined
+              ? 0
+              : passengers.numberOfAdults
+          }
           ticketIndex={'defaultTicket'}
         />
         <ChildPassengerForm
           register={register}
-          numberOfChildren={passengers.numberOfChildren === undefined ? 0 : passengers.numberOfChildren}
+          numberOfChildren={
+            passengers.numberOfChildren === undefined
+              ? 0
+              : passengers.numberOfChildren
+          }
           ticketIndex={'defaultTicket'}
         />
         <InfantPassengerForm
           register={register}
-          numberOfInfants={passengers.numberOfInfants === undefined ? 0 : passengers.numberOfInfants}
+          numberOfInfants={
+            passengers.numberOfInfants === undefined
+              ? 0
+              : passengers.numberOfInfants
+          }
           ticketIndex={tickets['defaultTicket']}
         />
       </Paper>

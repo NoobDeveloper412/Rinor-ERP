@@ -1,22 +1,24 @@
 /* eslint-disable no-restricted-globals */
-import {  Typography } from "@mui/material";
-import {  useFieldArray, useFormContext } from "react-hook-form";
-import React, { useEffect, useState } from "react";
+import { useFieldArray, useFormContext } from 'react-hook-form';
+import React, { useEffect, useState } from 'react';
+
+import { styled } from '@mui/material/styles';
+import { Paper, Typography, Stack } from '@mui/material';
 
 const ReviewBooking = () => {
   const { control } = useFormContext();
   const [grandTotal, setgrandTotal] = useState(0);
   const adultFields = useFieldArray({
     control,
-    name: "adults",
+    name: 'adults'
   }).fields;
   const childrenFields = useFieldArray({
     control,
-    name: "children",
+    name: 'children'
   }).fields;
   const infantFields = useFieldArray({
     control,
-    name: "infants",
+    name: 'infants'
   }).fields;
 
   const {
@@ -43,9 +45,10 @@ const ReviewBooking = () => {
     // issueBy,
     // ledger,
     adultFare,
+    numberOfTravelers,
     childFare,
     infantFare,
-    code,
+    code
   } = control._formValues;
 
   const [totalAdultFare, setTotalAdultFare] = useState(
@@ -78,101 +81,131 @@ const ReviewBooking = () => {
     totalAdultFare,
     totalAmount,
     totalChildrenFare,
-    totalInfantFare,
+    totalInfantFare
   ]);
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
+    paddingLeft: theme.spacing(2),
+    textAlign: 'flex-start',
+    color: theme.palette.text.secondary
+  }));
 
   return (
     <>
       <React.Fragment>
-        <Typography variant="h6" align="center" gutterBottom>
-          1 Booking Information Details
-        </Typography>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <p>{origin}</p>
-          <p>{destination}</p>
-          <p>{journeyDate}</p>
-          <p>{returnDate}</p>
-          <p>{numberOfAdults}</p>
-          <p>{numberOfChildren}</p>
-          <p>{numberOfInfants}</p>
-        </div>
+        <Stack spacing={2}>
+          <Item>
+            <Typography variant="h3" gutterBottom>
+              <b>Booking Information Details</b>
+            </Typography>
+            <p>
+              <b>From:</b> {origin}
+            </p>
+            <p>
+              <b>To:</b> {destination}
+            </p>
+            <p>
+              <b>Journey Date:</b> {journeyDate}
+            </p>
+            <p>
+              <b>Return Date:</b> {returnDate}
+            </p>
+            <p>
+              <b>Number of Passengers: </b>
+              {numberOfTravelers}
+            </p>
+          </Item>
+          <Item>
+            <Typography variant="h3" gutterBottom>
+              <b>Flight Information Details</b>
+            </Typography>
+            <p>
+              <b>Airline:</b> {airline}
+            </p>
+            <p>
+              <b>Code:</b> {code}
+            </p>
+            <p>
+              <b>Class:</b> {cabin}
+            </p>
+            <p>
+              <b>Total Adult Fare:</b> {totalAdultFare}
+            </p>
+            <p>
+              <b>Total Children Fare:</b> {totalChildrenFare}
+            </p>
+            <p>
+              <b>Total Infant Fare:</b> {totalInfantFare}
+            </p>
+            <p>
+              <b>sales Commission:</b> {salesCommission}
+            </p>
+            <p>
+              <b>Taxes:</b> {taxes}
+            </p>
+            <p>
+              <b>Discount:</b> {discount}
+            </p>
+          </Item>
 
-        <Typography variant="h6" align="center" gutterBottom>
-          2 Flight Information Details
-        </Typography>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <p>{airline}</p>
-          <p>{code}</p>
-          <p>{cabin}</p>
-          <p>{totalAdultFare}</p>
-          <p>{totalChildrenFare}</p>
-          <p>{totalInfantFare}</p>
-          <p>{salesCommission}</p>
-          <p>{taxes}</p>
-          <p>{discount}</p>
-        </div>
-        <Typography variant="h6" align="center" gutterBottom>
-          3 Passenger Details
-        </Typography>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          {adultFields.map((field, index) => (
-            <div key={index}>
-              <p>Date of Birth:{field.dateOfBirth}</p>
-              <p>First name: {field.firstName}</p>
-              <p>Email: {field.email}</p>
-              <p>Phone Number{field.phoneNumber}</p>
-              <p>Surname{field.surname}</p>
-            </div>
-          ))}
-          {childrenFields.map((field, index) => (
-            <div key={index.id}>
-              <p>Date of Birth: {field.dateOfBirth}</p>
-              <p>First name: {field.firstName}</p>
-              <p>Email {field.email}</p>
-              <p>Surname: {field.surname}</p>
-            </div>
-          ))}
-          {infantFields.map((field, index) => (
-            <div key={index}>
-              <p>{field.dateOfBirth}</p>
-              <p>{field.firstName}</p>
-              <p>{field.email}</p>
-              <p>{field.phoneNumber}</p>
-              <p>{field.surname}</p>
-            </div>
-          ))}
-        </div>
-        <Typography variant="h6" align="center" gutterBottom>
-          4 Fares Details
-        </Typography>
+          <Item>
+            <Typography variant="h3" gutterBottom>
+              <b>Passenger Details</b>
+            </Typography>
 
-        <p>Total Adult Fare: {isNaN(totalAdultFare) ? "" : totalAdultFare}</p>
-        <p>
-          Total Children Fare:{" "}
-          {isNaN(totalChildrenFare) ? "" : totalChildrenFare}
-        </p>
-        <p>
-          Total Infant Fare: {isNaN(totalInfantFare) ? "" : totalInfantFare}
-        </p>
-        <p>Grand Total: {isNaN(grandTotal) ? "" : grandTotal}</p>
+            {adultFields.map((field, index) => (
+              <div key={index}>
+                <p>Date of Birth:{field.dateOfBirth}</p>
+                <p>First name: {field.firstName}</p>
+                <p>Email: {field.email}</p>
+                <p>Phone Number{field.phoneNumber}</p>
+                <p>Surname{field.surname}</p>
+              </div>
+            ))}
+            {childrenFields.map((field, index) => (
+              <div key={index.id}>
+                <p>Date of Birth: {field.dateOfBirth}</p>
+                <p>First name: {field.firstName}</p>
+                <p>Email {field.email}</p>
+                <p>Surname: {field.surname}</p>
+              </div>
+            ))}
+            {infantFields.map((field, index) => (
+              <div key={index}>
+                <p>{field.dateOfBirth}</p>
+                <p>{field.firstName}</p>
+                <p>{field.email}</p>
+                <p>{field.phoneNumber}</p>
+                <p>{field.surname}</p>
+              </div>
+            ))}
+          </Item>
+          <Item>
+            <Typography variant="h3" gutterBottom>
+              <b>Passenger Details</b>
+            </Typography>
+
+            <p>
+              <b> Total Adult Fare:</b>{' '}
+              {isNaN(totalAdultFare) ? '' : totalAdultFare}
+            </p>
+            <p>
+              <b>Total Children Fare:</b>{' '}
+              {isNaN(totalChildrenFare) ? '' : totalChildrenFare}
+            </p>
+            <p>
+              <b> Total Infant Fare:</b>{' '}
+              {isNaN(totalInfantFare) ? '' : totalInfantFare}
+            </p>
+            <p>
+              <b>Grand Total: </b>
+              {isNaN(grandTotal) ? '' : grandTotal}
+            </p>
+          </Item>
+        </Stack>
       </React.Fragment>
     </>
   );

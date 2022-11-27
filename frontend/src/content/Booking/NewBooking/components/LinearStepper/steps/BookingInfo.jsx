@@ -35,7 +35,6 @@ const BookingInfo = () => {
       setTripType('oneWayTrip');
       setNumberOfTickets(0);
       setValue('totalTickets', 0);
-
       for (let index = 0; index < trip.length - 1; index++) {
         unregister(`tickets.${index}`);
       }
@@ -258,7 +257,8 @@ const BookingInfo = () => {
               xs={3}
               hidden={tripType !== 'multiCityTrip'}
               style={{
-                marginLeft: '-15px'
+                marginLeft: '-15px',
+                cursor:'pointer'
               }}
             >
               <Container>

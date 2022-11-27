@@ -232,12 +232,12 @@ const ThemeSettings = () => {
   return (
     <>
       <ThemeSettingsButton>
-        <Tooltip arrow title={t('Theme Settings')}>
+        {/* <Tooltip arrow title={t('Theme Settings')}>
           <Fab ref={ref} onClick={handleOpen} color="primary" aria-label="add">
             <SettingsTwoToneIcon />
           </Fab>
-        </Tooltip>
-        <Popover
+        </Tooltip> */}
+        {/* <Popover
           disableScrollLock
           anchorEl={ref.current}
           onClose={handleClose}
@@ -425,7 +425,7 @@ const ThemeSettings = () => {
               </Tooltip>
             </Stack>
           </ThemeToggleWrapper>
-        </Popover>
+        </Popover> */}
       </ThemeSettingsButton>
     </>
   );

@@ -6,31 +6,18 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Container, TextField } from '@mui/material';
 
-function AdultPassengerDetailAccordion({
-  title,
-  subtitle,
-  register,
-  index,
-  ticketIndex
-}) {
+function AdultPassengerDetailAccordion({ title, subtitle, register, index }) {
   return (
     <div>
-      <Accordion
-        style={{
-          backgroundColor: '#424242',
-          borderRadius: '10px',
-          borderColor: 'error.main',
-          margin: '10px 0px'
-        }}
-      >
+      <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography color="White">{title}</Typography>
+          <Typography>{title}</Typography>
         </AccordionSummary>
-        <AccordionDetails style={{ color: 'white' }}>
+        <AccordionDetails>
           <Typography color="darkgrey">{subtitle}</Typography>
 
           <Container style={{ marginTop: '20px', paddingLeft: '0px' }}>
