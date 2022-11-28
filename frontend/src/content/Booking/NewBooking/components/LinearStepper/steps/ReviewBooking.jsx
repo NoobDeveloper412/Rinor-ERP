@@ -81,7 +81,7 @@ const ReviewBooking = () => {
   return (
     <>
       <React.Fragment>
-        <Stack spacing={2}>
+        <Stack spacing={2} marginBottom={1}>
           <Item>
             <Typography variant="h3" gutterBottom>
               <b>Booking Information Details</b>

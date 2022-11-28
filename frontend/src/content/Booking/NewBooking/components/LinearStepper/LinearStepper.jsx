@@ -58,9 +58,12 @@ function getSteps() {
 
 const StepperVerticalWithNumbers = () => {
   // ** States
-  const [activeStep, setActiveStep] = useState(3);
+  const [activeStep, setActiveStep] = useState(0);
   const steps = getSteps();
-  const { reset } = useForm();
+  const {
+    reset,
+    control: { _formValues }
+  } = useForm();
 
   const methods = useForm({
     defaultValues: formDefaultValues
@@ -81,7 +84,7 @@ const StepperVerticalWithNumbers = () => {
   };
 
   const handleReset = () => {
-    reset();
+    // reset(_formValues);
     setActiveStep(0);
   };
 
